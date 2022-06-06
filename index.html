@@ -1,0 +1,2484 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="images/amazon.png" />
+    <link rel="preload" href="images/floor.jpg" />
+    <link rel="preload" href="images/env.webp" />
+
+    <link rel="preload" href="assets/wherehouse.gltf" />
+    <link rel="preload" href="assets/Manager.gltf" />
+    <link rel="preload" href="assets/shelf.glb" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.7.1/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="https://codechangers.com/physics.js"></script>
+  </head>
+  <body>
+    <a-scene id="myScene">
+      <a-assets>
+        <img id="ground" src="images/floor.jpg" />
+        <img id="env" src="images/env.webp" />
+        <img id="brick" src="images/brick.jpeg" />
+        <a-asset-item id="map" src="assets/wherehouse.gltf"></a-asset-item>
+        <a-asset-item id="mng" src="assets/Manager.gltf"></a-asset-item>
+        <a-asset-item id="shelf-m" src="assets/shelf.glb"></a-asset-item>
+        <a-asset-item id="m1" src="assets/material1.gltf"></a-asset-item>
+        <a-asset-item id="m2" src="assets/material2.gltf"></a-asset-item>
+        <a-asset-item id="m3" src="assets/TractionMotor.gltf"></a-asset-item>
+        <a-asset-item id="m4" src="assets/Ender3ControlBox.gltf"></a-asset-item>
+        <a-asset-item id="m5" src="assets/Chest.gltf"></a-asset-item>
+        <a-asset-item id="m6" src="assets/CharacterBoxprim.gltf"></a-asset-item>
+        <a-asset-item id="m7" src="assets/Box.gltf"></a-asset-item>
+        <a-asset-item id="m8" src="assets/Box2.gltf"></a-asset-item>
+        <a-asset-item id="m9" src="assets/jack.gltf"></a-asset-item>
+        <a-asset-item id="m10" src="assets/pc.gltf"></a-asset-item>
+        <a-asset-item id="monitor" src="assets/pcmonitor.gltf"></a-asset-item>
+        <a-asset-item id="d1" src="assets/domestic1.gltf"></a-asset-item>
+        <a-asset-item id="d2" src="assets/domestic2.gltf"></a-asset-item>
+        <a-asset-item id="d3" src="assets/domestic3.gltf"></a-asset-item>
+        <a-asset-item id="d4" src="assets/domestic4.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-plane
+        id="floor"
+        static-body
+        height="1000"
+        width="1000"
+        position="0 0 0"
+        rotation="-90 0 0"
+        material="src:#ground"
+      ></a-plane>
+      <a-sky id="sky" material="src:#env"></a-sky>
+
+      <a-camera
+        id="myCamera"
+        position="0.488 7.120 -11.203"
+        rotation="-5.844 897.941 0.000"
+        static-body
+        wasd-controls="enabled:false;adEnabled:false;wsEnabled:false"
+        geometry=""
+      >
+        <a-cursor
+          look-controls-enabled="false"
+          keyboard-controls="fpsMode: true"
+        ></a-cursor>
+      </a-camera>
+
+      <a-entity
+        gltf-model="#map"
+        position="0.690 0.417 -73.756"
+        rotation="0 0 0"
+        scale="4 4 4"
+        id="wherehouse"
+      ></a-entity>
+      <a-entity
+        gltf-model="#mng"
+        position="0.69 2.653 -3.478"
+        scale="4 4 4"
+        id="manager"
+        velocity=""
+        static-body="sphereRadius:NaN"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-entity
+        gltf-model="#shelf-m"
+        position="-11.49 2.653 72.393"
+        scale="20 20 30"
+        id="shelf"
+        rotation="0 180 0"
+      ></a-entity
+      ><a-entity
+        gltf-model="#shelf-m"
+        position="-43.715 2.653 71.277"
+        scale="20 20 30"
+        id="shelf-3"
+        rotation="0 180 0"
+      ></a-entity
+      ><a-entity
+        gltf-model="#shelf-m"
+        position="17.784 2.653 70.681"
+        scale="20 20 30"
+        id="shelf-2"
+        rotation="0 180 0"
+      ></a-entity
+      ><a-entity
+        gltf-model="#shelf-m"
+        position="55.828 2.653 70.957"
+        scale="20 20 30"
+        id="shelf-5"
+        rotation="0 180 0"
+      ></a-entity>
+
+      <a-entity
+        id="wall"
+        position="0 12.573 149.058"
+        geometry="width:100;height:90;depth:2"
+        material="color:#c6c3c3"
+      ></a-entity>
+
+      <a-entity
+        id="material-4"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 21.962"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-5"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 30.717"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-51"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 13.729"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-6"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 39.13"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-7"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 47.838"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-8"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 56.284"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-9"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 64.845"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-10"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 73.865"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-11"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 83.045"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-12"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 92.017"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-13"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 100.652"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-14"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 108.908"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-15"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 117.136"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-16"
+        gltf-model="assets/material1.gltf"
+        position="20.256 14.727 123.063"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 0 90"
+        scale="2 2 2"
+      ></a-entity>
+      <a-entity
+        id="material-17"
+        gltf-model="assets/material1.gltf"
+        position="20.256 19.057 129.633"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-18"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.931 126.245"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-19"
+        gltf-model="assets/material1.gltf"
+        position="20.256 19.088 122.744"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-20"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 118.901"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-21"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 115.121"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-22"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 111.302"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-23"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 107.637"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-24"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 104.244"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-25"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 100.66"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-26"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 97.29"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-27"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 93.975"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-28"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 90.766"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-29"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 87.504"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-30"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 84.483"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-31"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 81.481"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-32"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 78.288"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-33"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 74.708"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-34"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 71.413"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-35"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 67.717"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-36"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 64.244"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-37"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 60.919"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-39"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 54.018"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-40"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 50.701"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-41"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 47.444"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-42"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 43.921"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-43"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 40.395"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-44"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 36.48"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-45"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 32.708"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-46"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 29.083"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-47"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 25.413"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-48"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 21.891"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-49"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 18.024"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-50"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 14.149"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material-38"
+        gltf-model="assets/material1.gltf"
+        position="20.256 18.902 57.461"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material2"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 14.149"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-2"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 17.788"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-3"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 21.79"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-4"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 25.361"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-5"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 29.244"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-6"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 32.787"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-7"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 36.48"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-8"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 40.59"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-9"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 44.099"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-10"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 47.503"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-11"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 51.122"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-12"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 54.199"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-13"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 57.685"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-14"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 61.073"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-15"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 64.725"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-16"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 68.222"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-17"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 71.469"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-18"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 74.764"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-19"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 78.525"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-20"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 81.835"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-21"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 84.757"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-22"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 87.786"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-23"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 91.098"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-24"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 94.232"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-25"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 97.277"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-26"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 101.006"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-27"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 104.335"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-28"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 107.675"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-29"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 111.602"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-30"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 115.425"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-31"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 119.269"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-32"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 123.349"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity
+      ><a-entity
+        id="material2-33"
+        gltf-model="assets/material1.gltf"
+        position="15.942 18.902 127.216"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.8 1"
+      ></a-entity>
+      <a-entity
+        id="material3"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 17.558"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-11"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 19.254"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-19"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 19.254"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-20"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 31.982"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-21"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 45.809"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-22"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 59.099"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-23"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 72.825"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-24"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 85.981"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-25"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 99.951"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-26"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 112.872"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-27"
+        gltf-model="assets/box3.gltf"
+        position="18.658 33.554 125.407"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-12"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 33.539"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-13"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 46.926"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-14"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 60.584"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-15"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 75.713"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-16"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 89.197"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-17"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 103.499"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-18"
+        gltf-model="assets/box3.gltf"
+        position="18.658 8.527 119.869"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.2 0.2 0.2"
+      ></a-entity
+      ><a-entity
+        id="material3-2"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 29.783"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-3"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 42.352"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-4"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 54.413"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-5"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 66.652"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-6"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 78.146"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-7"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 89.749"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-8"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 101.759"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-9"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 113.751"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity
+      ><a-entity
+        id="material3-10"
+        gltf-model="assets/Chest.gltf"
+        position="16.828 27.894 124.775"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="5 3 5"
+      ></a-entity>
+      <a-entity
+        id="material4"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 17.099"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-2"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 30.42"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-3"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 44.006"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-4"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 57.149"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-5"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 70.098"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-6"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 83.021"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-7"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 96.245"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-8"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 109.266"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-9"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 6.446 121.842"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-10"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 121.842"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-11"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 108.495"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-12"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 95.368"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-13"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 82.508"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-14"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 69.672"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-15"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 56.855"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-16"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 43.998"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-17"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 30.874"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-18"
+        gltf-model="assets/Box.gltf"
+        position="-10.973 12.901 17.251"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-19"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 17.251"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-34"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 19.245"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-35"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 26.125"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-36"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 33.149"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-37"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 40.168"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-38"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 46.98"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-39"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 53.447"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-40"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 60.32"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-41"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 67.416"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-42"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 74.516"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-43"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 81.243"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-44"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 88.527"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-45"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 95.67"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-46"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 102.833"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-47"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 110.044"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-48"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 117.224"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-49"
+        gltf-model="assets/Box.gltf"
+        position="-13.702 25.165 124.1"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 2"
+      ></a-entity
+      ><a-entity
+        id="material4-20"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 24.661"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-21"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 32.212"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-22"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 40.243"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-23"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 48.211"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-24"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 55.77"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-25"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 63.241"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-26"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 71.041"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-27"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 78.517"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-28"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 86.408"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-29"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 94.105"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-30"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 101.804"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-31"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 110.055"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-32"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 117.677"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity
+      ><a-entity
+        id="material4-33"
+        gltf-model="assets/Box.gltf"
+        position="-15.505 18.65 125.312"
+        geometry="depth:3;height:2.99;width:3"
+        scale="1 0.5 3"
+      ></a-entity>
+      <a-entity
+        id="material5"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 15.094"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-2"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 20.432"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-3"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 25.969"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-4"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 32.294"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-5"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 38.094"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-6"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 43.431"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-7"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 48.782"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-8"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 54.544"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-9"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 59.975"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-10"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 65.766"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-11"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 71.178"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-12"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 76.885"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-13"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 82.143"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-14"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 87.963"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-15"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 93.917"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-16"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 99.817"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-17"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 105.21"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-18"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 110.546"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-19"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 116.834"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity
+      ><a-entity
+        id="material5-20"
+        gltf-model="assets/CharacterBoxprim.gltf"
+        position="-43.931 8.682 123.412"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="4 4 4"
+      ></a-entity>
+      <a-entity
+        id="material6"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 16.541"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-2"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 22.773"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-3"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 29.418"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-4"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 35.383"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-5"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 41.346"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-6"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 47.011"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-7"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 52.985"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-8"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 58.67"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-9"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 64.742"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-10"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 70.905"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-11"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 77.214"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-12"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 83.248"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-13"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 89.358"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-14"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 95.219"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-15"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 101.255"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-16"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 107.187"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-17"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 112.886"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-18"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 118.722"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-19"
+        gltf-model="assets/pc.gltf"
+        position="-42.654 12.992 125.009"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-20"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 125.009"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-21"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 118.748"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-22"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 112.707"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-23"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 107.135"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-24"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 101.338"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-25"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 95.355"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-26"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 89.386"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-27"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 83.119"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-28"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 77.143"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-29"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 71.128"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-30"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 64.677"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-31"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 58.506"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-32"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 52.851"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-33"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 46.899"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-34"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 41.094"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-35"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 35.354"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-36"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 29.239"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-37"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 22.525"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity
+      ><a-entity
+        id="material6-38"
+        gltf-model="assets/pc.gltf"
+        position="-46.542 12.992 16.354"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+      ></a-entity>
+      <a-entity
+        id="material7"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 16.286"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-2"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 23.37"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-3"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 30.37"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-4"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 36.905"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-5"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 43.863"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-6"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 50.638"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-7"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 57.661"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-8"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 64.857"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-9"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 72.213"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-10"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 79.44"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-11"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 86.245"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-12"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 93.305"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-13"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 100.536"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-14"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 107.84"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-15"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 114.251"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-16"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-43.974 19.716 122.534"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-17"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 122.534"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-18"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 114.655"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-19"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 107.447"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-20"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 100.604"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-21"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 93.11"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-22"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 85.858"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-23"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 78.905"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-24"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 71.955"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-25"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 64.318"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-26"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 57.262"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-27"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 50.088"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-28"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 43.255"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-29"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 36.316"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-30"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 29.487"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-31"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 22.149"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity
+      ><a-entity
+        id="material7-32"
+        gltf-model="assets/pcmonitor.gltf"
+        position="-47.574 19.716 16.179"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.5 0.5 0.5"
+      ></a-entity>
+      <a-entity
+        id="domestic"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 15.159"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-2"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 18.98"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-3"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 22.532"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-4"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 25.499"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-5"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 29.176"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-6"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 32.773"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-7"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 36.057"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-8"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 39.271"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-9"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 42.58"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-10"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 45.841"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-11"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 49.758"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-12"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 53.833"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-13"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 57.719"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-14"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 61.078"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-15"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 64.664"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-16"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 68.198"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-17"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 71.883"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-18"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 75.656"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-19"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 79.561"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-20"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 83.084"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-21"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 86.748"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-22"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 90.587"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-23"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 94.178"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-24"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 98.052"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-25"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 101.999"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-26"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 105.443"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-27"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 108.917"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-28"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 112.903"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-29"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 116.852"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-30"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 120.357"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-31"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 123.864"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-32"
+        gltf-model="assets/domestic1.gltf"
+        position="56.773 6.965 127.131"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="10 10 10"
+      ></a-entity
+      ><a-entity
+        id="domestic-33"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 123.246"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-34"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 110.524"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-35"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 97.814"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-36"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 83.978"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-37"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 70.937"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-38"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 58.213"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-39"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 44.696"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-40"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 31.855"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity
+      ><a-entity
+        id="domestic-41"
+        gltf-model="assets/domestic3.gltf"
+        position="56.773 14.829 19.098"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="90 100 90"
+        scale="0.5 1 0.5"
+      ></a-entity>
+      <a-entity
+        id="domestic2"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 16.297"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-2"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 21.847"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-3"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 28.281"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-4"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 34.179"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-5"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 40.038"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-6"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 45.394"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-7"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 50.745"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-8"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 55.925"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-9"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 60.942"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-10"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 66.541"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-11"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 71.252"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-12"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 76.37"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-13"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 81.299"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-14"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 86.327"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-15"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 91.996"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-16"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 97.153"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-17"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 102.317"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-18"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 107.121"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-19"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 112.959"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-20"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 118.234"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-21"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 123.243"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity
+      ><a-entity
+        id="domestic2-22"
+        gltf-model="assets/domestic4.gltf"
+        position="56.773 21.392 128.125"
+        geometry="depth:3;height:2.99;width:3"
+        rotation="0 -90 0"
+        scale="0.07 0.07 0.07"
+      ></a-entity>
+    </a-scene>
+  </body>
+  <script src="https://codechangers.com/camps2019/vr/shoot-partial.js"></script>
+  <script src="script.js"></script>
+</html>
